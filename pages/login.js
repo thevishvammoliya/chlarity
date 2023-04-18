@@ -1,4 +1,4 @@
-import { Container, Image, Text, Link, Input, Spacer } from "@nextui-org/react";
+import { Container, Text, Link, Input, Spacer } from "@nextui-org/react";
 import Layout from "../components/Layout";
 import { Grid, Button, Card } from "@nextui-org/react";
 import { Component } from "react";
@@ -12,11 +12,11 @@ class Login extends Component {
         password: ''
     }
 
-    login = async () => {
+    async login() {
         const user = await signInWithEmailAndPassword(auth, this.state.email, this.state.password);
         console.log(user);
     }
-    
+
     render() {
         return (
             <Layout>
