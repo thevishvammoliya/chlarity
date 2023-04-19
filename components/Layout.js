@@ -1,14 +1,17 @@
-import { Container } from '@nextui-org/react';
-import NavBar from '../components/NavigationBar';
-import { NextUIProvider, Image } from '@nextui-org/react'
+import { Container } from "@nextui-org/react";
+import NavBar from "../components/NavigationBar";
+import { NextUIProvider, Image } from "@nextui-org/react";
+import style from "./CSS/Layout.module.css";
 
 export default function Layout(props) {
   return (
-    <NextUIProvider>
-      <Container css={{ minHeight: '1000px', linearGradient: "45deg, #1CB5E0 20%, #000046 80%" }}>
-        <NavBar />
-        {props.children}
-      </Container>
-    </NextUIProvider>
+    <div className={style.bg}>
+      <NextUIProvider>
+        <Container>
+          <NavBar />
+          {props.children}
+        </Container>
+      </NextUIProvider>
+    </div>
   );
 }
