@@ -21,8 +21,8 @@ export default function NavigationBar() {
       <Navbar.Content hideIn="xs">
         <Navbar.Link href="/funds">Funds</Navbar.Link>
         <Navbar.Link href="/donate">Donate</Navbar.Link>
-        <Navbar.Link href="/landing#about">About Us</Navbar.Link>
-        <Navbar.Link href="/landing#services">Our Services</Navbar.Link>
+        <Navbar.Link href="/#about">About Us</Navbar.Link>
+        <Navbar.Link href="/#services">Our Services</Navbar.Link>
       </Navbar.Content>
       <Navbar.Content>
         {/* <Navbar.Link color="inherit" href="/login">
