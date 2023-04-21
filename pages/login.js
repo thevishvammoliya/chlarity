@@ -2,7 +2,7 @@ import { Container, Text, Input, Spacer } from "@nextui-org/react";
 import Layout from "../components/Layout";
 import { Grid, Button, Card } from "@nextui-org/react";
 import { useState } from "react";
-import { auth, db } from "../firebase-config"; // assuming you have initialized Firestore in firebase-config.js
+import { auth, db } from "../firebase-config";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/router";
 import { collection, doc, getDoc } from "firebase/firestore";
@@ -10,7 +10,7 @@ import { collection, doc, getDoc } from "firebase/firestore";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [userRole, setUserRole] = useState(""); // new state variable to store user's role
+  const [userRole, setUserRole] = useState("");
   const router = useRouter();
 
   const login = async () => {
