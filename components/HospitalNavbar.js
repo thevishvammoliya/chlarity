@@ -1,11 +1,13 @@
 import {
   Navbar,
   Button,
+  Image,
   Avatar,
   Text,
   Link,
   Dropdown,
   Popover,
+  Card,
 } from "@nextui-org/react";
 export default function NGONavbar() {
   return (
@@ -26,21 +28,22 @@ export default function NGONavbar() {
         </a>
       </Navbar.Brand>
       <Navbar.Content>
-        <Navbar.Link color="inherit" href="/ngo/dashboard">
-          Dashboard
+        <Navbar.Link color="inherit" href="/hospital/viewRequests">
+          Veiw Requests
         </Navbar.Link>
-        <Navbar.Link color="inherit" href="#">
-          Hospitals
+        <Navbar.Link color="inherit" href="/hospital/createRequest">
+          Create Request
         </Navbar.Link>
-        <Navbar.Item>
-          <Dropdown>
-            <Dropdown.Button light>Requests</Dropdown.Button>
-            <Dropdown.Menu>
-              <Dropdown.Item>Manage Requests</Dropdown.Item>
-              <Dropdown.Item>Approved Requests</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </Navbar.Item>
+        {/* <Popover>
+          <Popover.Trigger>
+            <Avatar text="Hospital" color="primary" textColor="white" as={Button} />
+          </Popover.Trigger>
+          <Popover.Content>
+            <Button light as={Link} href="/">
+              Logout
+            </Button>
+          </Popover.Content>
+        </Popover> */}
       </Navbar.Content>
       <Navbar.Content>
         <Navbar.Item>

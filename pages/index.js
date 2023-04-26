@@ -1,4 +1,4 @@
-import styles from "../components/CSS/Landing.module.css";
+import styles from "../CSS/Landing.module.css";
 import { Container } from "@nextui-org/react";
 import Layout from "../components/Layout";
 
