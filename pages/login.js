@@ -83,7 +83,8 @@ const Login = () => {
               </Grid>
             </Grid>
             <Text color="error">
-              NOTE: Login feature is only for NGO Admins
+              NOTE : If you are a hospital representative, then you can visit
+              the nearest NGO branch and register for free.
             </Text>
           </Grid.Container>
         </Card>
