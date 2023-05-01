@@ -37,7 +37,7 @@ export default function NGONavbar() {
   }, [router.pathname]);
 
   return (
-    <Navbar variant="floating" disableBlur>
+    <Navbar variant="static" maxWidth="fluid" disableBlur>
       <Navbar.Brand>
         <a href="/">
           <Text
@@ -52,7 +52,7 @@ export default function NGONavbar() {
           </Text>
         </a>
       </Navbar.Brand>
-      <Navbar.Content activeColor="primary" variant="underline" hideIn="xs">
+      <Navbar.Content activeColor="primary" variant="underline-rounded" hideIn="xs">
         <Navbar.Link
           isActive={selectedItem === "dashboard"}
           href="/ngo/dashboard"

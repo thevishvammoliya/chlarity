@@ -30,10 +30,10 @@ const Login = () => {
       if (userDocSnapshot.exists()) {
         const userType = userDocSnapshot.data().role;
         if (userType === "ngo") {
-          router.reload();
+          // router.reload();
           router.push("/ngo/dashboard");
         } else if (userType === "Hospital") {
-          router.reload();
+          // router.reload();
           router.push("/hospital/viewRequests");
         } else {
           setErrorMessage("Invalid user type");

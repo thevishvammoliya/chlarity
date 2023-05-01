@@ -36,7 +36,7 @@ export default function HospitalNavbar() {
   };
 
   return (
-    <Navbar variant="floating" disableBlur>
+    <Navbar variant="static" maxWidth="fluid" disableBlur>
       <Navbar.Brand>
         <a href="/">
           <Text
@@ -52,7 +52,7 @@ export default function HospitalNavbar() {
           </Text>
         </a>
       </Navbar.Brand>
-      <Navbar.Content activeColor="primary" variant="underline" hideIn="xs">
+      <Navbar.Content activeColor="primary" variant="underline-rounded" hideIn="xs">
         <Navbar.Link
           isActive={selectedItem === "viewRequests"}
           href="/hospital/viewRequests"
