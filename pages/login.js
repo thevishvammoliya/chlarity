@@ -1,4 +1,4 @@
-import { Container, Text, Input, Spacer } from "@nextui-org/react";
+import { Container, Text, Input, Spacer, Loading } from "@nextui-org/react";
 import Layout from "../components/Layout";
 import { Grid, Button, Card } from "@nextui-org/react";
 import { useState } from "react";
@@ -6,14 +6,18 @@ import { auth, db } from "../firebase-config";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/router";
 import { collection, doc, getDoc } from "firebase/firestore";
+import Cookies from "js-cookie";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userRole, setUserRole] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
 
   const login = async () => {
+    setIsLoading(true);
     try {
       const userCredential = await signInWithEmailAndPassword(
         auth,
@@ -26,17 +30,24 @@ const Login = () => {
       if (userDocSnapshot.exists()) {
         const userType = userDocSnapshot.data().role;
         if (userType === "ngo") {
+          router.reload();
           router.push("/ngo/dashboard");
-        } else if (userType === "hospital") {
-          router.push("/hospital/createRequest");
+        } else if (userType === "Hospital") {
+          router.reload();
+          router.push("/hospital/viewRequests");
         } else {
-          // handle invalid user type
+          setErrorMessage("Invalid user type");
         }
+        // Store the user ID in a cookie
+        Cookies.set("userId", userId);
       } else {
-        // handle user not found
+        setErrorMessage("User not found");
       }
     } catch (error) {
       console.log(error);
+      setErrorMessage(error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -66,25 +77,27 @@ const Login = () => {
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
               />
+              {errorMessage && (
+                <Text color="error" css={{ marginTop: "0.5rem" }}>
+                  {errorMessage}
+                </Text>
+              )}
               <Spacer y={1} />
               <Grid css={{ marginLeft: "10%" }}>
-                <Button shadow color="primary" onPress={login}>
-                  Login
-                </Button>
-                {/* <Button
-                  light
+                <Button
+                  shadow
                   color="primary"
-                  css={{ marginTop: "5px" }}
-                  as={Link}
-                  href="/signup"
+                  onPress={login}
+                  css={{ marginLeft: "10%" }}
+                  disabled={isLoading}
                 >
-                  New? Sign up!
-                </Button> */}
+                  {isLoading ? <Loading type="points" /> : "Login"}
+                </Button>
               </Grid>
             </Grid>
             <Text color="error">
               NOTE : If you are a hospital representative, then you can visit
-              the nearest NGO branch and register for free.
+              the nearest NGO branch and register
             </Text>
           </Grid.Container>
         </Card>

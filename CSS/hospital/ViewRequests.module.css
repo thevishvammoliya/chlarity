@@ -67,3 +67,7 @@
   color: #4a4a4a;
   font-weight: bold;
 }
+
+.error {
+  color: #ff0000;
+}

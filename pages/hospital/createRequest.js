@@ -1,37 +1,89 @@
+import { useState } from "react";
+import { collection, addDoc } from "firebase/firestore";
+import { db, auth } from "../../firebase-config";
 import { Container, Text, Textarea, Input, Spacer } from "@nextui-org/react";
-import Layout from "../../components/Layout";
+import HospitalLayout from '../../components/HospitalLayout'
 import { Grid, Button, Card } from "@nextui-org/react";
 
-export default function CreateRequest() {
+const CreateRequest = () => {
+  const [patientName, setPatientName] = useState("");
+  const [treatmentType, setTreatmentType] = useState("");
+  const [amount, setAmount] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const user = auth.currentUser;
+    const hospitalId = user ? user.uid : "";
+
+    try {
+      const request = await addDoc(collection(db, "requests"), {
+        patientName,
+        treatmentType,
+        amount,
+        hospitalId,
+        status: "Pending",
+      });
+      console.log("Request added with ID: ", request.id);
+      setPatientName("");
+      setTreatmentType("");
+      setAmount("");
+    } catch (error) {
+      console.error("Error adding request: ", error);
+    }
+  };
+
   return (
-    <Layout>
+    <HospitalLayout>
       <Spacer y={10} />
       <Container justify="center" display="flex">
         <Card css={{ mw: "400px", p: "20px" }}>
-          <Grid.Container gap={2} justify="center" alignContent="center">
-            <Grid justify="center" alignItems="baseline">
-              <Text
-                h2
-                css={{ textGradient: "45deg, #000046 -30%, #1CB5E0 50%" }}
-                weight="bold"
-              >
-                Create Request
-              </Text>
-              <Spacer y={1.6} />
-              <Input label="Amount" placeholder="Ξ Ether" fullWidth />
-              <Textarea
-                label="Description"
-                placeholder="Enter Request Description"
-                fullWidth
-              />
-              <Spacer y={1} />
-              <Button shadow color="primary" css={{ marginLeft: "75px" }}>
-                Create
-              </Button>
-            </Grid>
-          </Grid.Container>
+          <form onSubmit={handleSubmit}>
+            <Grid.Container gap={2} justify="center" alignContent="center">
+              <Grid justify="center" alignItems="baseline">
+                <Text
+                  h2
+                  css={{ textGradient: "45deg, #000046 -30%, #1CB5E0 50%" }}
+                  weight="bold"
+                >
+                  Create Request
+                </Text>
+                <Spacer y={1.6} />
+                <Input
+                  label="Patient Name"
+                  value={patientName}
+                  onChange={(e) => setPatientName(e.target.value)}
+                  fullWidth
+                />
+                <Input
+                  label="Treatment Type"
+                  value={treatmentType}
+                  onChange={(e) => setTreatmentType(e.target.value)}
+                  fullWidth
+                />
+                <Input
+                  label="Amount"
+                  value={amount}
+                  onChange={(e) => setAmount(e.target.value)}
+                  fullWidth
+                />
+                <Spacer y={1} />
+                <Button
+                  shadow
+                  color="primary"
+                  css={{ marginLeft: "75px" }}
+                  type="submit"
+                >
+                  Create
+                </Button>
+              </Grid>
+            </Grid.Container>
+          </form>
         </Card>
       </Container>
-    </Layout>
+    </HospitalLayout>
   );
-}
+};
+
+
+export default CreateRequest;

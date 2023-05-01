@@ -1,20 +1,47 @@
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import {
   Navbar,
   Button,
-  Avatar,
   Text,
   Link,
-  Dropdown,
-  Popover,
 } from "@nextui-org/react";
+
 export default function NGONavbar() {
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    // Set the active state of the Navbar.Link component based on the current URL
+    switch (router.pathname) {
+      case "/ngo/dashboard":
+        setSelectedItem("dashboard");
+        break;
+      case "/ngo/registerHospital":
+        setSelectedItem("registerHospital");
+        break;
+      case "/ngo/manageHospitals":
+        setSelectedItem("manageHospitals");
+        break;
+      case "/ngo/manageRequests":
+        setSelectedItem("manageRequests");
+        break;
+      case "/ngo/approvedRequests":
+        setSelectedItem("approvedRequests");
+        break;
+      default:
+        setSelectedItem(null);
+        break;
+    }
+  }, [router.pathname]);
+
   return (
     <Navbar variant="floating" disableBlur>
       <Navbar.Brand>
         <a href="/">
           <Text
             h2
-            color="inherit"
             hideIn="xs"
             css={{
               fontFamily: "ui-sans-serif",
@@ -25,13 +52,48 @@ export default function NGONavbar() {
           </Text>
         </a>
       </Navbar.Brand>
-      <Navbar.Content>
-        <Navbar.Link color="inherit" href="/ngo/dashboard">
+      <Navbar.Content activeColor="primary" variant="underline" hideIn="xs">
+        <Navbar.Link
+          isActive={selectedItem === "dashboard"}
+          href="/ngo/dashboard"
+        >
           Dashboard
         </Navbar.Link>
-        <Navbar.Link color="inherit" href="#">
-          Hospitals
+        <Navbar.Link
+          isActive={selectedItem === "registerHospital"}
+          href="/ngo/registerHospital"
+        >
+          Register Hospital
         </Navbar.Link>
+        <Navbar.Link
+          isActive={selectedItem === "manageHospitals"}
+          href="/ngo/manageHospitals"
+        >
+          Manage Hospitals
+        </Navbar.Link>
+        <Navbar.Link
+          isActive={selectedItem === "manageRequests"}
+          href="/ngo/manageRequests"
+        >
+          Manage Requests
+        </Navbar.Link>
+        <Navbar.Link
+          isActive={selectedItem === "approvedRequests"}
+          href="/ngo/approvedRequests"
+        >
+          Approved Requests
+        </Navbar.Link>
+      </Navbar.Content>
+      <Navbar.Content>
+        {/* <Navbar.Item>
+          <Dropdown>
+            <Dropdown.Button light>Hospitals</Dropdown.Button>
+            <Dropdown.Menu>
+              <Dropdown.Item variant="shadow">Register Hospital</Dropdown.Item>
+              <Dropdown.Button>Manage Hospitals</Dropdown.Button>
+            </Dropdown.Menu>
+          </Dropdown>
+        </Navbar.Item>
         <Navbar.Item>
           <Dropdown>
             <Dropdown.Button light>Requests</Dropdown.Button>
@@ -40,7 +102,7 @@ export default function NGONavbar() {
               <Dropdown.Item>Approved Requests</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-        </Navbar.Item>
+        </Navbar.Item> */}
       </Navbar.Content>
       <Navbar.Content>
         <Navbar.Item>
