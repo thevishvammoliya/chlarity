@@ -1,24 +1,85 @@
-import { NextUIProvider, Spacer, Container, Card, Grid, Text } from "@nextui-org/react";
-import NavigationBar from "../../components/NavigationBar";
+import { useState, useEffect } from "react";
+import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
+import { db } from "../../firebase-config";
 import NGOlayout from "../../components/NGOlayout";
-import NGONavbar from "../../components/NGONavbar";
+import styles from "../../CSS/ngo/manageHospitals.module.css";
+import { Loading } from "@nextui-org/react";
 
-export default function Dashboard() {
+const ManageHospitals = () => {
+    const [hospitals, setHospitals] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const hospitalsCollectionRef = collection(db, "hospitals");
+            const hospitalsSnapshot = await getDocs(hospitalsCollectionRef);
+            const hospitalsData = hospitalsSnapshot.docs.map((doc) => ({
+                id: doc.id,
+                ...doc.data(),
+            }));
+            setHospitals(hospitalsData);
+            setIsLoading(false);
+        };
+        fetchData();
+    }, []);
+
+    // const handleDelete = async (id) => {
+    //     try {
+    //         await deleteDoc(doc(db, "hospitals", id));
+    //         await deleteDoc(doc(db, "users", id));
+    //         setHospitals((prevHospitals) =>
+    //             prevHospitals.filter((hosp) => hosp.id !== id)
+    //         );
+    //         console.log("Hospital deleted successfully!");
+    //     } catch (error) {
+    //         console.error("Error deleting hospital:", error);
+    //     }
+    // };
+
     return (
-        <>
-            <NGOlayout>
-                <Spacer y={10} />
-                <Container justify="center" display="flex">
-                    <Card css={{ mw: "400px", p: "20px" }}>
-                        <Grid.Container gap={2} justify="center" alignContent="center">
-                            <Grid justify="center" alignItems="baseline">
-                                <Text h4>Current Balance:</Text>
-                                <Text h2 css={{ textGradient: "45deg, #000046 20%, #1CB5E0 80%" }} weight="bold">25 Ether</Text>
-                            </Grid>
-                        </Grid.Container>
-                    </Card>
-                </Container>
-            </NGOlayout>
-        </>
+        <NGOlayout>
+            <div className={styles.container}>
+                <h1 className={styles.title}>Manage Hospitals</h1>
+                {isLoading ? (
+                    <Loading size="lg"></Loading>
+                ) : (
+                    <table className={styles.table}>
+                        <thead>
+                            <tr>
+                                <th className={styles["header-cell"]}>Hospital Name</th>
+                                <th className={styles["header-cell"]}>Hospital ID</th>
+                                <th className={styles["header-cell"]}>
+                                    MetaMask Wallet Address
+                                </th>
+                                <th className={styles["header-cell"]}>Services</th>
+                                {/* <th className={styles["header-cell"]}>Actions</th> */}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {hospitals.map((hospital) => (
+                                <tr key={hospital.id}>
+                                    <td className={styles["row-cell"]}>{hospital.name}</td>
+                                    <td className={styles["row-cell"]}>{hospital.hospitalId}</td>
+                                    <td className={styles["row-cell"]}>
+                                        {hospital.walletAddress}
+                                    </td>
+                                    <td className={styles["row-cell"]}>{hospital.services}</td>
+                                    {/* <td className={styles["row-cell"]}>
+                                        <button
+                                            className={styles["delete-button"]}
+                                            onClick={() => handleDelete(hospital.id)}
+                                        >
+                                            Delete
+                                        </button>
+                                    </td> */}
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                )}
+            </div>
+        </NGOlayout>
     );
-}
+};
+
+export default ManageHospitals;

@@ -1,15 +1,40 @@
-import {
-  Navbar,
-  Button,
-  Image,
-  Avatar,
-  Text,
-  Link,
-  Dropdown,
-  Popover,
-  Card,
-} from "@nextui-org/react";
-export default function NGONavbar() {
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { Navbar, Button, Text, Link } from "@nextui-org/react";
+import { auth } from "../firebase-config";
+import Cookies from "js-cookie";
+
+export default function HospitalNavbar() {
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    // Set the active state of the Navbar.Link component based on the current URL
+    switch (router.pathname) {
+      case "/hospital/viewRequests":
+        setSelectedItem("viewRequests");
+        break;
+      case "/hospital/createRequest":
+        setSelectedItem("createRequest");
+        break;
+      default:
+        setSelectedItem(null);
+        break;
+    }
+  }, [router.pathname]);
+
+  const handleLogout = async () => {
+    try {
+      await auth.signOut();
+      Cookies.remove("userID");
+      router.reload();
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Navbar variant="floating" disableBlur>
       <Navbar.Brand>
@@ -27,27 +52,23 @@ export default function NGONavbar() {
           </Text>
         </a>
       </Navbar.Brand>
-      <Navbar.Content>
-        <Navbar.Link color="inherit" href="/hospital/viewRequests">
-          Veiw Requests
+      <Navbar.Content activeColor="primary" variant="underline" hideIn="xs">
+        <Navbar.Link
+          isActive={selectedItem === "viewRequests"}
+          href="/hospital/viewRequests"
+        >
+          View Requests
         </Navbar.Link>
-        <Navbar.Link color="inherit" href="/hospital/createRequest">
+        <Navbar.Link
+          isActive={selectedItem === "createRequest"}
+          href="/hospital/createRequest"
+        >
           Create Request
         </Navbar.Link>
-        {/* <Popover>
-          <Popover.Trigger>
-            <Avatar text="Hospital" color="primary" textColor="white" as={Button} />
-          </Popover.Trigger>
-          <Popover.Content>
-            <Button light as={Link} href="/">
-              Logout
-            </Button>
-          </Popover.Content>
-        </Popover> */}
       </Navbar.Content>
       <Navbar.Content>
         <Navbar.Item>
-          <Button auto flat as={Link} href="/">
+          <Button auto flat onClick={handleLogout}>
             Logout
           </Button>
         </Navbar.Item>
