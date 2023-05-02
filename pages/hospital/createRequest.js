@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, getDoc, doc } from "firebase/firestore";
 import { db, auth } from "../../firebase-config";
 import { Container, Text, Textarea, Input, Spacer } from "@nextui-org/react";
-import HospitalLayout from '../../components/HospitalLayout'
+import HospitalLayout from "../../components/HospitalLayout";
 import { Grid, Button, Card } from "@nextui-org/react";
 
 const CreateRequest = () => {
@@ -17,13 +17,20 @@ const CreateRequest = () => {
     const hospitalId = user ? user.uid : "";
 
     try {
+      // Fetch hospital name from hospitals collection
+      const hospitalDoc = await getDoc(doc(db, "hospitals", hospitalId));
+      const hospitalName = hospitalDoc.data().name;
+
+      // Add request to requests collection
       const request = await addDoc(collection(db, "requests"), {
         patientName,
         treatmentType,
+        hospitalName,
         amount,
         hospitalId,
         status: "Pending",
       });
+
       console.log("Request added with ID: ", request.id);
       setPatientName("");
       setTreatmentType("");
@@ -84,6 +91,5 @@ const CreateRequest = () => {
     </HospitalLayout>
   );
 };
-
 
 export default CreateRequest;
