@@ -16,9 +16,9 @@
   overflow: hidden;
   background-color: #d7d7d7;
 }
-
 .header {
-  background-color: #f7fafc;
+  background-color: #2e2e2e;
+  color: #fff;
 }
 
 .cell {
@@ -32,7 +32,7 @@
 }
 
 .row:nth-child(even) {
-  background-color: #bfbfbf;
+  background-color: #e5e5e5;
 }
 
 /* .row:hover {
@@ -42,29 +42,25 @@
 
 .status-approved {
   border-radius: 15px;
-  background-color: #88c9ff;
-  color: #4a4a4a;
+  color: #34c759;
   font-weight: bold;
 }
 
 .status-pending {
   border-radius: 15px;
-  background-color: #f9db6d;
-  color: #4a4a4a;
+  color: #cf9b00;
   font-weight: bold;
 }
 
 .status-finalized {
   border-radius: 15px;
-  background-color: #a3f6a3;
-  color: #4a4a4a;
+  color: #007aff;
   font-weight: bold;
 }
 
-.status-denied {
+.status-rejected {
   border-radius: 15px;
-  background-color: #ff9b9b;
-  color: #4a4a4a;
+  color: #ff3b30;
   font-weight: bold;
 }
 
