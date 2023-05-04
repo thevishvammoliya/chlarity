@@ -187,10 +187,10 @@ const ApprovedRequests = () => {
                                         {request.status}
                                     </td>
                                     <td className={styles.cell}>
-                                        <button className={`${styles.button} ${styles.finalize}`} onClick={() => handleFinalize(request.id)}>
+                                        <button className={`${styles.button} ${styles.finalize}`} disabled={finalising} onClick={() => handleFinalize(request.id)}>
                                             {finalising ? <Loading type="points" /> : "Finalize"}
                                         </button>
-                                        <button className={`${styles.button} ${styles.revert}`} onClick={() => handleRevert(request.id)}>
+                                        <button className={`${styles.button} ${styles.revert}`} disabled={reverting} onClick={() => handleRevert(request.id)}>
                                             {reverting ? <Loading type="points" color="error" /> : "Revert"}
                                         </button>
                                     </td>

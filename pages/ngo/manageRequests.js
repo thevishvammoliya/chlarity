@@ -201,7 +201,7 @@ const ManageRequests = () => {
                                     <td className={styles.cell}>
                                         {request.status.toLowerCase() === "pending" && (
                                             <>
-                                                <button className={`${styles.button} ${styles.approve}`} onClick={() => handleApprove(request.id)}>
+                                                <button className={`${styles.button} ${styles.approve}`} disabled={rowLoading} onClick={() => handleApprove(request.id)}>
                                                     {rowLoading ? <Loading type="points" color="success" /> : "Approve"}
                                                 </button>
                                                 <button className={`${styles.button} ${styles.reject}`} onClick={() => handleReject(request.id)}>
