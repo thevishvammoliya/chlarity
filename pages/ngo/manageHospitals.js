@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
-import { db } from "../../firebase-config";
+import { db, auth } from "../../firebase-config";
 import NGOlayout from "../../components/NGOlayout";
 import styles from "../../CSS/ngo/manageHospitals.module.css";
 import { Loading } from "@nextui-org/react";
@@ -8,20 +8,42 @@ import { Loading } from "@nextui-org/react";
 const ManageHospitals = () => {
     const [hospitals, setHospitals] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [user, setUser] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
-            const hospitalsCollectionRef = collection(db, "hospitals");
-            const hospitalsSnapshot = await getDocs(hospitalsCollectionRef);
-            const hospitalsData = hospitalsSnapshot.docs.map((doc) => ({
-                id: doc.id,
-                ...doc.data(),
-            }));
-            setHospitals(hospitalsData);
-            setIsLoading(false);
+            if (user) {
+                const hospitalsCollectionRef = collection(db, "hospitals");
+                const hospitalsSnapshot = await getDocs(hospitalsCollectionRef);
+                const hospitalsData = hospitalsSnapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }));
+                setHospitals(hospitalsData);
+                setIsLoading(false);
+            }
         };
         fetchData();
     }, []);
+
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            setUser(user);
+        });
+
+        return unsubscribe;
+    }, []);
+
+    if (!user) {
+        return (
+            <NGOlayout>
+                <div className={styles.container}>
+                    <h1 className={styles.title}>Manage Hospitals</h1>
+                    <p className={styles.error}>Please login to see the details.</p>
+                </div>
+            </NGOlayout>
+        );
+    }
 
     // const handleDelete = async (id) => {
     //     try {

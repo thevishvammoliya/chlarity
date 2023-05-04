@@ -3,7 +3,7 @@ import mainContract from './build/MainContract.json'
 
 const main = new web3.eth.Contract(
   mainContract.abi,
-  "0x4600D647E0Cc74a816b27b37082f3Dadb6350bE8"
+  "0x52a451C9f72382E760dF6372fb94Ca91D4f1415e"
 );
 
 export default main;

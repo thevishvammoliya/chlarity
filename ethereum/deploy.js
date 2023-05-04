@@ -5,7 +5,7 @@ const MainContract = require("./build/MainContract.json");
 const provider = new HDWalletProvider(
   "sand clap meadow salon lift spirit eyebrow west poverty wait sing toss",
   // remember to change this to your own phrase!
-  "https://goerli.infura.io/v3/0188afced4a942cd84979c3adb9c9ae7"
+  "https://sepolia.infura.io/v3/0188afced4a942cd84979c3adb9c9ae7"
   // remember to change this to your own endpoint!
 );
 const web3 = new Web3(provider);

@@ -64,6 +64,12 @@
   font-weight: bold;
 }
 
+.status-reverted {
+  border-radius: 15px;
+  color: #530400;
+  font-weight: bold;
+}
+
 .error {
   color: #ff0000;
 }
