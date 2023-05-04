@@ -6,6 +6,10 @@ import {
   Text,
   Link,
 } from "@nextui-org/react";
+import { auth } from "../firebase-config";
+import Cookies from "js-cookie";
+import { signOut } from "firebase/auth";
+
 
 export default function NGONavbar() {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -35,6 +39,16 @@ export default function NGONavbar() {
         break;
     }
   }, [router.pathname]);
+
+  const handleLogout = async () => {
+    try {
+      await auth.signOut();
+      Cookies.remove("userID");
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Navbar variant="static" maxWidth="fluid" disableBlur>
@@ -106,7 +120,7 @@ export default function NGONavbar() {
       </Navbar.Content>
       <Navbar.Content>
         <Navbar.Item>
-          <Button auto flat as={Link} href="/">
+          <Button auto flat onPress={handleLogout}>
             Logout
           </Button>
         </Navbar.Item>
