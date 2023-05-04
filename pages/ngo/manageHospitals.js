@@ -12,6 +12,7 @@ const ManageHospitals = () => {
 
     useEffect(() => {
         const fetchData = async () => {
+            setIsLoading(true);
             if (user) {
                 const hospitalsCollectionRef = collection(db, "hospitals");
                 const hospitalsSnapshot = await getDocs(hospitalsCollectionRef);
@@ -20,11 +21,11 @@ const ManageHospitals = () => {
                     ...doc.data(),
                 }));
                 setHospitals(hospitalsData);
-                setIsLoading(false);
             }
+            setIsLoading(false);
         };
         fetchData();
-    }, []);
+    }, [user]);
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
