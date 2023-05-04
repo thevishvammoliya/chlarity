@@ -38,6 +38,11 @@
   vertical-align: middle;
 }
 
+.requestAddress {
+  font-weight: bold;
+  padding: 10px;
+}
+
 .cell:last-child {
   text-align: center;
 }
@@ -92,22 +97,22 @@
   border: none;
 }
 
-.approve {
+.finalize {
   background-color: #fff;
-  color: #34c759;
-  margin: auto;
+  color: #007aff;
+  margin: 5px;
   /* box-shadow: 0 0 8px 1px #34c759; */
 }
 
-.reject {
+.revert {
   background-color: #fff;
   color: #ff3b30;
-  margin: auto;
+  margin: 5px;
   /* box-shadow: 0 0 8px 1px #ff3b30; */
 }
 
-.approve:hover,
-.reject:hover {
+.finalize:hover,
+.revert:hover {
   background-color: #eee;
   color: #000;
   box-shadow: 0 0 0 2px #666 inset;
