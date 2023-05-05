@@ -28,7 +28,6 @@ export default function HospitalNavbar() {
     try {
       await auth.signOut();
       Cookies.remove("userID");
-      router.reload();
       router.push("/");
     } catch (error) {
       console.log(error);
