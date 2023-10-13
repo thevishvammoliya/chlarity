@@ -3,9 +3,9 @@ const Web3 = require("web3");
 const MainContract = require("./build/MainContract.json");
 
 const provider = new HDWalletProvider(
-  "sand clap meadow salon lift spirit eyebrow west poverty wait sing toss",
-  // remember to change this to your own phrase!
-  "https://sepolia.infura.io/v3/0188afced4a942cd84979c3adb9c9ae7"
+  //"Remove Comment from this line and Replace this text with your Wallet phrase",
+  //First account from this wallet willbe used to deploy the contracts
+  // "Also uncomment this line, Your Testnet API endpint here"
   // remember to change this to your own endpoint!
 );
 const web3 = new Web3(provider);
