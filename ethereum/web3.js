@@ -9,7 +9,7 @@ if (typeof window !== "undefined" && typeof window.ethereum !== "undefined") {
 } else {
   // We are on the server *OR* the user is not running metamask
   const provider = new Web3.providers.HttpProvider(
-    //"Your API key here,I used Infura Sepolia Testnet key"
+    //"Uncomment this line, Your Testnet API endpint here, I used Infura"
 
   );
   web3 = new Web3(provider);
