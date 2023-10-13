@@ -9,7 +9,7 @@ if (typeof window !== "undefined" && typeof window.ethereum !== "undefined") {
 } else {
   // We are on the server *OR* the user is not running metamask
   const provider = new Web3.providers.HttpProvider(
-    "https://goerli.infura.io/v3/0188afced4a942cd84979c3adb9c9ae7"
+    //"Your API key here,I used Infura Sepolia Testnet key"
 
   );
   web3 = new Web3(provider);
