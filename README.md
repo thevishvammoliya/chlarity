@@ -30,11 +30,10 @@ npm run test
 👤 **Vishvam Moliya**
 
 * Github: [@thevishvammoliya](https://github.com/thevishvammoliya)
-* LinkedIn: [@Vishvam Moliya](https://linkedin.com/in/Vishvam Moliya)
+* LinkedIn: [@Vishvam Moliya](https://www.linkedin.com/in/vishvam-moliya-30ba69241/)
 
 ## Show your support
 
 Give a ⭐️ if this project helped you!
 
 ***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
