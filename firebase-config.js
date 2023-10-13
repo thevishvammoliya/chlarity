@@ -3,12 +3,7 @@ import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBdMug76CY4zpI-J5S3eDR9rVUUgRiEHIo",
-  authDomain: "chlarity.firebaseapp.com",
-  projectId: "chlarity",
-  storageBucket: "chlarity.appspot.com",
-  messagingSenderId: "392600507057",
-  appId: "1:392600507057:web:1e9f3e8c81322c59a98890"
+  //"Firebase API key here"
 };
 
 const app = initializeApp(firebaseConfig);
