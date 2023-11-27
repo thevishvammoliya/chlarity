@@ -1,8 +1,6 @@
 <h1 align="center">
   Welcome to Chlarity
-  <div style="width: 75px; height: 75px; overflow: hidden; border-radius: 50%;">
-    <img src="https://github.com/thevishvammoliya/chlarity/assets/96417040/178c9126-0b78-49cc-8671-617403d79d1f" alt="MoonVenusGIF" width="75">
-  </div>
+    <img src="https://github.com/thevishvammoliya/chlarity/assets/96417040/178c9126-0b78-49cc-8671-617403d79d1f" alt="Chlarity" width="75">
 </h1>
 
 
