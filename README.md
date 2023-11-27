@@ -31,13 +31,8 @@ Chlarity is a blockchain-based platform that redefines the landscape of charitab
 
 ## Overview Flowchart
 
-```mermaid
-graph TD
-  A[Request Submission by Hospitals] -->|2. NGO Scrutiny and Approval| B[Smart Contract Deployment]
-  B -->|3. Treatment and Fund Disbursement| C[Funds Transferred to Hospital]
-  C -->|4. Security Measures| D[Destroy Smart Contract]
-  D -->|6. Refund Mechanism| E[Funds Returned to Main Contract]
-  E -->|5. Fund Management| F[Funds Distributed to Approved Requests]
+![image](https://github.com/thevishvammoliya/chlarity/assets/96417040/28723c60-a971-4b40-9465-afaf2ebf9801)
+
 
 ### ✨ [Demo](https://chlarity.vercel.app/)
 
