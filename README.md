@@ -21,13 +21,13 @@ Chlarity is a blockchain-based platform that redefines the landscape of charitab
 4. **Security Measures:**
    - In case of any issues such as the hospital failing to deliver the promised treatment or suspicious activities, the smart contract can be destroyed.
 
-5. **Fund Management:**
-   - The main contract holds the donated funds from donors.
-   - Funds can only be transferred to contracts that are created at the time of request approval.
-
-6. **Refund Mechanism:**
+5. **Refund Mechanism:**
    - If needed, funds can be returned to the main contract from the request contract.
    - The main contract ensures that funds are distributed only through approved requests.
+
+6. **Fund Management:**
+   - The main contract holds the donated funds from donors.
+   - Funds can only be transferred to contracts that are created at the time of request approval.
 
 ## Overview Flowchart
 
