@@ -1,4 +1,5 @@
-<h1 align="center">Welcome to Chlarity 👋</h1>
+<h1 align="center">Welcome to Chlarity <![MoonVenusGIF](https://github.com/thevishvammoliya/chlarity/assets/96417040/178c9126-0b78-49cc-8671-617403d79d1f)
+/h1>
 <p align="center">
   <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
 </p>
