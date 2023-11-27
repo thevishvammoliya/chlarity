@@ -1,9 +1,43 @@
-<h1 align="center">Welcome to chlarity 👋</h1>
-<p>
+<h1 align="center">Welcome to Chlarity 👋</h1>
+<p align="center">
   <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
 </p>
 
-> Chlarity is a blockchain-based platform designed to bring transparency and accountability to the world of charitable giving. With Chlarity, we aim to revolutionize the way people donate to and monitor charitable organizations.
+Chlarity is a blockchain-based platform that redefines the landscape of charitable giving by introducing transparency and accountability. Our mission is to revolutionize the donation process and provide a reliable mechanism for monitoring charitable organizations.
+
+## How Chlarity Works
+
+1. **Request Submission by Hospitals:**
+   - Hospitals register on the Chlarity portal and submit requests on behalf of patients.
+
+2. **NGO Scrutiny and Approval:**
+   - The NGO reviews and scrutinizes the requests from hospitals.
+   - Upon approval, a smart contract is deployed for the specific request.
+
+3. **Treatment and Fund Disbursement:**
+   - If the patient's treatment is successfully completed, the NGO admin can initiate funds.
+   - Funds are transferred to the hospital's address.
+
+4. **Security Measures:**
+   - In case of any issues such as the hospital failing to deliver the promised treatment or suspicious activities, the smart contract can be destroyed.
+
+5. **Fund Management:**
+   - The main contract holds the donated funds from donors.
+   - Funds can only be transferred to contracts that are created at the time of request approval.
+
+6. **Refund Mechanism:**
+   - If needed, funds can be returned to the main contract from the request contract.
+   - The main contract ensures that funds are distributed only through approved requests.
+
+## Overview Flowchart
+
+```mermaid
+graph TD
+  A[Request Submission by Hospitals] -->|2. NGO Scrutiny and Approval| B[Smart Contract Deployment]
+  B -->|3. Treatment and Fund Disbursement| C[Funds Transferred to Hospital]
+  C -->|4. Security Measures| D[Destroy Smart Contract]
+  D -->|6. Refund Mechanism| E[Funds Returned to Main Contract]
+  E -->|5. Fund Management| F[Funds Distributed to Approved Requests]
 
 ### ✨ [Demo](https://chlarity.vercel.app/)
 
