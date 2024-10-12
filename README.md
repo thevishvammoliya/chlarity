@@ -1,6 +1,6 @@
 <h1 align="center">
   Welcome to Chlarity
-<!--     <img src="https://github.com/thevishvammoliya/chlarity/assets/96417040/178c9126-0b78-49cc-8671-617403d79d1f" alt="Chlarity" width="75"> -->
+<!--    
 </h1>
 
 
