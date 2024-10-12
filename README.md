@@ -1,6 +1,5 @@
 <h1 align="center">
-  Welcome to Chlarity
-<!--    
+  Welcome to Chlarity   
 </h1>
 
 
@@ -35,8 +34,8 @@ Chlarity is a blockchain-based platform that redefines the landscape of charitab
    - Funds can only be transferred to contracts that are created at the time of request approval.
 
 ## Overview Flowchart
+![285807316-28723c60-a971-4b40-9465-afaf2ebf9801](https://github.com/user-attachments/assets/f139ab72-acbb-4ca0-a18c-a3cc4fae4813)
 
-![image](https://github.com/thevishvammoliya/chlarity/assets/96417040/28723c60-a971-4b40-9465-afaf2ebf9801)
 
 
 ### ✨ [Demo](https://chlarity.vercel.app/)
